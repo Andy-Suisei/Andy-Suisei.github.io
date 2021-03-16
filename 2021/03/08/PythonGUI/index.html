@@ -31,7 +31,7 @@
 <meta property="og:description" content="Python GUItkinter1234567891011from tkinter import * #導入tkinterroot &#x3D; Tk()	#建立視窗root.title(&quot;AYAYA&quot;) #視窗名稱設定root.config(bg &#x3D; &quot;#00ff00&quot;) #視窗顏色root.iconbitmap(&quot;icon.ico&quot;) #視窗">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-03-08T12:04:14.000Z">
-<meta property="article:modified_time" content="2021-03-08T12:44:03.654Z">
+<meta property="article:modified_time" content="2021-03-16T03:49:39.609Z">
 <meta property="article:author" content="白魚">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="GUI">
@@ -193,10 +193,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-03-08 20:04:14 / 修改時間：20:44:03" itemprop="dateCreated datePublished" datetime="2021-03-08T20:04:14+08:00">2021-03-08</time>
+              <time title="創建時間：2021-03-08 20:04:14" itemprop="dateCreated datePublished" datetime="2021-03-08T20:04:14+08:00">2021-03-08</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-03-16 11:49:39" itemprop="dateModified" datetime="2021-03-16T11:49:39+08:00">2021-03-16</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -232,6 +238,88 @@
 <h4 id="Component-組件"><a href="#Component-組件" class="headerlink" title="Component 組件"></a>Component 組件</h4><p>Frame：視窗區域</p>
 <p>LabelFrame：標籤式視窗區域</p>
 <p>Label：文字標籤</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#基本</span></span><br><span class="line">Label1 = Labbel(text=<span class="string">&quot;Basic&quot;</span>)	<span class="comment">#新增一個Label text=Basic	</span></span><br><span class="line">Label1.pack()	<span class="comment">#配置上視窗</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left">options参数</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">anchor</td>
+<td align="left">控制文字（圖片）在Label中的位置<br />使用“n”, “ne”, “e”, “se”, “s”, “sw”, “w”, “nw”,“ center”來定位9個位置</td>
+</tr>
+<tr>
+<td align="left">background(bg)</td>
+<td align="left">設置背景顏色</td>
+</tr>
+<tr>
+<td align="left">bitmap</td>
+<td align="left">指定顯示到Label上的位圖</td>
+</tr>
+<tr>
+<td align="left">borderwidth(bd)</td>
+<td align="left">指定Label的邊框寬度</td>
+</tr>
+<tr>
+<td align="left">compound</td>
+<td align="left">控制Label中文本和圖像的混合模式<br />使用”bottom”, “left”, “right”, “top”</td>
+</tr>
+<tr>
+<td align="left">cursor</td>
+<td align="left">指定當鼠標在Label上飄過的時候的鼠標樣式</td>
+</tr>
+<tr>
+<td align="left">font</td>
+<td align="left">指定Label中文字的字體</td>
+</tr>
+<tr>
+<td align="left">foreground(fg)</td>
+<td align="left">設置Label文字的顏色</td>
+</tr>
+<tr>
+<td align="left">height</td>
+<td align="left">設置Label的高度</td>
+</tr>
+<tr>
+<td align="left">image</td>
+<td align="left">指定Label顯示的圖片</td>
+</tr>
+<tr>
+<td align="left">justify</td>
+<td align="left">定義如何對齊多行文字<br />使用“left”, “right”, “center”</td>
+</tr>
+<tr>
+<td align="left">padx</td>
+<td align="left">指定Label水平方向上的額外間距（內容和邊框間）</td>
+</tr>
+<tr>
+<td align="left">pady</td>
+<td align="left">指定Label垂直方向上的額外間距（內容和邊框間）</td>
+</tr>
+<tr>
+<td align="left">relief</td>
+<td align="left">指定邊框樣式(浮雕)<br /> “groove”,  “raised”,  “ridge”,  “solid” , “sunken”</td>
+</tr>
+<tr>
+<td align="left">text</td>
+<td align="left">指定Label顯示的文字</td>
+</tr>
+<tr>
+<td align="left">textvariable</td>
+<td align="left">Label顯示Tkinter變數的內容</td>
+</tr>
+<tr>
+<td align="left">width</td>
+<td align="left">設置Label的寬度</td>
+</tr>
+<tr>
+<td align="left">wraplength</td>
+<td align="left">依照設置數量決定每多少字元換行</td>
+</tr>
+</tbody></table>
 <p>Entry：文字方塊</p>
 <p>Text：文字區域</p>
 <p>Button：按鈕</p>
