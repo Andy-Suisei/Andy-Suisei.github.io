@@ -23,18 +23,23 @@
     var CONFIG = {"hostname":"andy-suisei.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="待更新">
+  <meta name="description" content="Simplified Instruction Computer 簡化指令電腦(SIC)Standard model (SIC) 標準版本Two versions of SIC standard model (SIC) 標準版本 extension version (SIC&#x2F;EX) EX版本 extra equipment 更多設備指令 extra expensive 更貴 upward compa">
 <meta property="og:type" content="article">
 <meta property="og:title" content="System Software">
 <meta property="og:url" content="https://andy-suisei.github.io/2021/03/11/System%20Software/index.html">
 <meta property="og:site_name" content="白魚の小圈圈">
-<meta property="og:description" content="待更新">
+<meta property="og:description" content="Simplified Instruction Computer 簡化指令電腦(SIC)Standard model (SIC) 標準版本Two versions of SIC standard model (SIC) 標準版本 extension version (SIC&#x2F;EX) EX版本 extra equipment 更多設備指令 extra expensive 更貴 upward compa">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://andy-suisei.github.io/images/axl.png">
+<meta property="og:image" content="https://andy-suisei.github.io/images/insformat.png">
+<meta property="og:image" content="https://andy-suisei.github.io/images/xeregister.png">
+<meta property="og:image" content="https://andy-suisei.github.io/images/xedata.png">
 <meta property="article:published_time" content="2021-03-10T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-03-11T15:40:04.028Z">
+<meta property="article:modified_time" content="2021-03-17T13:24:22.516Z">
 <meta property="article:author" content="白魚">
 <meta property="article:tag" content="System Software">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://andy-suisei.github.io/images/axl.png">
 
 <link rel="canonical" href="https://andy-suisei.github.io/2021/03/11/System%20Software/">
 
@@ -192,10 +197,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-03-11 00:00:00 / 修改時間：23:40:04" itemprop="dateCreated datePublished" datetime="2021-03-11T00:00:00+08:00">2021-03-11</time>
+              <time title="創建時間：2021-03-11 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-11T00:00:00+08:00">2021-03-11</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-03-17 21:24:22" itemprop="dateModified" datetime="2021-03-17T21:24:22+08:00">2021-03-17</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -224,8 +235,118 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>待更新</p>
+        <h2 id="Simplified-Instruction-Computer-簡化指令電腦-SIC"><a href="#Simplified-Instruction-Computer-簡化指令電腦-SIC" class="headerlink" title="Simplified Instruction Computer 簡化指令電腦(SIC)"></a>Simplified Instruction Computer 簡化指令電腦(SIC)</h2><h3 id="Standard-model-SIC-標準版本"><a href="#Standard-model-SIC-標準版本" class="headerlink" title="Standard model (SIC) 標準版本"></a>Standard model (SIC) 標準版本</h3><h4 id="Two-versions-of-SIC"><a href="#Two-versions-of-SIC" class="headerlink" title="Two versions of SIC"></a>Two versions of SIC</h4><ul>
+<li>standard model (SIC) 標準版本</li>
+<li>extension version (SIC/EX) EX版本<ul>
+<li>extra equipment 更多設備指令</li>
+<li>extra expensive 更貴</li>
+<li>upward compatible 向上兼容</li>
+</ul>
+</li>
+</ul>
+<h4 id="Memory"><a href="#Memory" class="headerlink" title="Memory"></a>Memory</h4><ul>
+<li>8-bit bytes 由byte組成</li>
+<li>3 consecutive bytes form a word 連續三個byte形成word</li>
+<li>32758(2^15) bytes in the computer memory 電腦裡有32768個bytes</li>
+</ul>
 <span id="more"></span>
+
+<h4 id="Register"><a href="#Register" class="headerlink" title="Register"></a>Register</h4><p><img src="/images/axl.png"></p>
+<h4 id="Data-format"><a href="#Data-format" class="headerlink" title="Data format"></a>Data format</h4><ul>
+<li>Integers are stored as 24-bit binary number 整數以24bit的二進制表示</li>
+<li>For negative values, use 2’s complement to represent 用2的補數表示負數</li>
+<li>Character stored by ASCII code 字元以ASCII表示</li>
+<li>No floating-point 沒有浮點數</li>
+</ul>
+<h4 id="Instruction-formats"><a href="#Instruction-formats" class="headerlink" title="Instruction formats"></a>Instruction formats</h4><p><img src="/images/insformat.png"></p>
+<p>可拆分為</p>
+<p>8 bit opcode </p>
+<p>1 bit x 用來表示是否為索引定址模式</p>
+<p>15 bit address 因為記憶體大小為2^15 bytes 因此15個bits 就可以表示所有記憶體位置</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>指定</th>
+<th>目標位址的算法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>直接</td>
+<td>x=0</td>
+<td>目標位址 =位址</td>
+</tr>
+<tr>
+<td>索引</td>
+<td>x=1</td>
+<td>目標位址 =位址 +(X暫存器的值)</td>
+</tr>
+</tbody></table>
+<h4 id="Instruction-set"><a href="#Instruction-set" class="headerlink" title="Instruction set"></a>Instruction set</h4><ul>
+<li>Load and Store 載入和儲存暫存器<ul>
+<li>LDA, LDX, STA, STX 載入,儲存一個word進暫存器</li>
+<li>LDCH, STCH 載入,儲存一個byte進暫存器並且多餘空間補0</li>
+</ul>
+</li>
+<li>Integer arithmetic operation 整數算數運算指令<ul>
+<li>ADD, SUB, MUL, DIV</li>
+</ul>
+</li>
+<li>Comparison 比較大小<ul>
+<li>COMP, compares the value in register A with a word in memory and sets a condition code CC </li>
+</ul>
+</li>
+<li>Conditional jump instructions 條件跳躍指令<ul>
+<li>JLT, JEQ, JGT (&lt;,=,&gt;)</li>
+<li>Test the setting of CC and jump accordingly</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">COMP 	0030	&#x2F;&#x2F;比較A暫存器跟記憶體0030位置的大小 並將結果存在CC</span><br><span class="line">JLT 	3120	&#x2F;&#x2F;檢視CC是否符合JLT 若符合則將PC改為3120</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Subroutine jump 副程式跳躍<ul>
+<li>JSUB, jump to subroutine 跳到副程式</li>
+<li>RSUB, jump to the address of register L 跳到暫存器L</li>
+<li>Use register L to store return address 使用暫存器L存取回傳位址</li>
+</ul>
+</li>
+<li>No memory to memory move instruction</li>
+</ul>
+<h4 id="Input-and-Output"><a href="#Input-and-Output" class="headerlink" title="Input and Output"></a>Input and Output</h4><ul>
+<li>Starts from the 8 rightmost bits of register A</li>
+<li>All device have a 8 bits device code</li>
+<li>SIC have 3 I/O instruction<ul>
+<li>TD（Test Device）</li>
+<li>RD（Read Device）</li>
+<li>WD（Write Data）</li>
+</ul>
+</li>
+</ul>
+<h4 id="Directive"><a href="#Directive" class="headerlink" title="Directive"></a>Directive</h4><p>定義資料儲存空間的指示</p>
+<ul>
+<li>WORD 保留一個word的空間當作常數</li>
+<li>RESW 保留一個以上的word的空間當作變數</li>
+<li>BYTE, RESB 保留一個byte的空間</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ALPHA	RESW	3	&#x2F;&#x2F;ALPHA的位址保留3個word大小</span><br><span class="line">FIVE	WORD	5	&#x2F;&#x2F;FIVE的位址放入5</span><br><span class="line">CHARZ	BYTE	C&#39;Z&#39;	&#x2F;&#x2F;CHARZ的位址放入Z</span><br><span class="line">C1	RESB	1	&#x2F;&#x2F;c1的位址保留1個BYTE大小</span><br></pre></td></tr></table></figure>
+
+<h3 id="Code-Sample"><a href="#Code-Sample" class="headerlink" title="Code Sample"></a>Code Sample</h3><h4 id="Arithmetic-operation"><a href="#Arithmetic-operation" class="headerlink" title="Arithmetic operation"></a>Arithmetic operation</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;已將ALPHA,BETA,INCR變數值讀入</span><br><span class="line">	LDA	ALPHA		&#x2F;&#x2F;將ALPHA位址的值存入A</span><br><span class="line">	ADD 	INCR		&#x2F;&#x2F;暫存器A +&#x3D; INCR</span><br><span class="line">	SUB	ONE		&#x2F;&#x2F;暫存器A -&#x3D; 1</span><br><span class="line">	STA 	BETA		&#x2F;&#x2F;將暫存器A的值存入BETA位址</span><br><span class="line">	LDA	GAMMA		&#x2F;&#x2F;將GAMMA位址的值存入A</span><br><span class="line">	ADD 	INCR		&#x2F;&#x2F;暫存器A +&#x3D; INCR</span><br><span class="line">	SUB	ONE		&#x2F;&#x2F;暫存器A -&#x3D; 1</span><br><span class="line">	STA	DELTA		&#x2F;&#x2F;將暫存器A的值存入DELTA位址</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">ONE		WORD 	1</span><br><span class="line">ALPHA	RESW	1</span><br><span class="line">BETA	RESW	1</span><br><span class="line">GAMMA	RESW 	1</span><br><span class="line">DELTA 	RESW	1</span><br><span class="line">INCR	RESW 	1</span><br></pre></td></tr></table></figure>
+
+<h4 id="Looping-and-indexing"><a href="#Looping-and-indexing" class="headerlink" title="Looping and indexing"></a>Looping and indexing</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">	LDX 	ZERO		&#x2F;&#x2F;初始化X暫存器為0</span><br><span class="line">MOVECH	LDCH	STR1, X		&#x2F;&#x2F;從暫存器A讀取index為X的一個char進去</span><br><span class="line">	STCH	STR2, X		&#x2F;&#x2F;</span><br><span class="line">	TIX	ELEVEN		&#x2F;&#x2F;先將X暫存器值+1後跟ELEVEN比對 值放入CC</span><br><span class="line">	JLT	MOVECH		&#x2F;&#x2F;如果CC是小於則跳回MOVECH</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">STR1	BYTE	C&#39;TEST STRING&#39;	&#x2F;&#x2F;將後面字串丟入STR1</span><br><span class="line">STR2	RESB	11</span><br><span class="line">ZERO	WORD	0</span><br><span class="line">ELEVEN	WORD	11</span><br></pre></td></tr></table></figure>
+
+<h4 id="Input-and-output"><a href="#Input-and-output" class="headerlink" title="Input and output"></a>Input and output</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">INLOOP	TD	INDEV	&#x2F;&#x2F;測試輸入裝置</span><br><span class="line">	JEQ	INLOOP	&#x2F;&#x2F;迴圈直到輸入裝置準備好</span><br><span class="line">	RD	INDEV	&#x2F;&#x2F;讀一個字元進入暫存器A</span><br><span class="line">	STCH	DATA	&#x2F;&#x2F;把暫存器A的字元存入DATA位址</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">OUTLP	TD	OUTDEV	&#x2F;&#x2F;測試輸入裝置</span><br><span class="line">	JEQ	OUTLP	&#x2F;&#x2F;迴圈直到輸入裝置準備好</span><br><span class="line">	LDCH	DATA	&#x2F;&#x2F;從DATA位址讀一個字元進暫存器A</span><br><span class="line">	WD	OUTDEV	&#x2F;&#x2F;將字元輸出</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">INDEV	BYTE	X&#39;F1&#39;	&#x2F;&#x2F;輸入裝置代號F1</span><br><span class="line">OUTDEV	BYTE	X&#39;05&#39;	&#x2F;&#x2F;輸出裝置代號05</span><br><span class="line">DATA	RESB	1</span><br></pre></td></tr></table></figure>
+
+<h4 id="Subroutine-call"><a href="#Subroutine-call" class="headerlink" title="Subroutine call"></a>Subroutine call</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">	JSUB	READ	&#x2F;&#x2F;呼叫READ副程式</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">.</span><br><span class="line">READ	LDX	ZERO	&#x2F;&#x2F;初始化X暫存器為0</span><br><span class="line">RLOOP	TD	INDEV	&#x2F;&#x2F;測試輸入裝置</span><br><span class="line">	JEQ	RLOOP	&#x2F;&#x2F;迴圈直到輸入裝置準備好</span><br><span class="line">	RD	INDEV	&#x2F;&#x2F;讀一個字元進入暫存器A</span><br><span class="line">	STCH	RECORD,X	&#x2F;&#x2F;把暫存器A的字元存入RECORD位址</span><br><span class="line">	TIX	K100	&#x2F;&#x2F;先將X暫存器值+1後跟K100比對 值放入CC</span><br><span class="line">	JLT	RLOOP	&#x2F;&#x2F;如果CC是小於則跳回RLOOP</span><br><span class="line">	RSUB		&#x2F;&#x2F;離開副程式</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">INDEV	BYTE	X&#39;F1&#39;	&#x2F;&#x2F;輸入裝置代號F1</span><br><span class="line">RECORD	RESB	100</span><br><span class="line">.</span><br><span class="line">ZERO	WORD	0</span><br><span class="line">K100	WORD	100</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Extension-version-SIC-EX-EX版本"><a href="#Extension-version-SIC-EX-EX版本" class="headerlink" title="Extension version (SIC/EX) EX版本"></a>Extension version (SIC/EX) EX版本</h3><h4 id="Memory-1"><a href="#Memory-1" class="headerlink" title="Memory"></a>Memory</h4><ul>
+<li>1048576(2^20) bytes in the computer memory 電腦裡有32768個bytes</li>
+</ul>
+<h4 id="Register-1"><a href="#Register-1" class="headerlink" title="Register"></a>Register</h4><p><img src="/images/xeregister.png"></p>
+<h4 id="Data-format-1"><a href="#Data-format-1" class="headerlink" title="Data format"></a>Data format</h4><p><img src="/images/xedata.png"></p>
+
     </div>
 
     
@@ -246,10 +367,7 @@
     <a href="/2021/03/08/PythonGUI/" rel="prev" title="Python GUI">
       <i class="fa fa-chevron-left"></i> Python GUI
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/03/11/ComputerNetwork/" rel="next" title="Computer Networking">
-      Computer Networking <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -308,6 +426,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Simplified-Instruction-Computer-%E7%B0%A1%E5%8C%96%E6%8C%87%E4%BB%A4%E9%9B%BB%E8%85%A6-SIC"><span class="nav-number">1.</span> <span class="nav-text">Simplified Instruction Computer 簡化指令電腦(SIC)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Standard-model-SIC-%E6%A8%99%E6%BA%96%E7%89%88%E6%9C%AC"><span class="nav-number">1.1.</span> <span class="nav-text">Standard model (SIC) 標準版本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Two-versions-of-SIC"><span class="nav-number">1.1.1.</span> <span class="nav-text">Two versions of SIC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Memory"><span class="nav-number">1.1.2.</span> <span class="nav-text">Memory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Register"><span class="nav-number">1.1.3.</span> <span class="nav-text">Register</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-format"><span class="nav-number">1.1.4.</span> <span class="nav-text">Data format</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Instruction-formats"><span class="nav-number">1.1.5.</span> <span class="nav-text">Instruction formats</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Instruction-set"><span class="nav-number">1.1.6.</span> <span class="nav-text">Instruction set</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Input-and-Output"><span class="nav-number">1.1.7.</span> <span class="nav-text">Input and Output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Directive"><span class="nav-number">1.1.8.</span> <span class="nav-text">Directive</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-Sample"><span class="nav-number">1.2.</span> <span class="nav-text">Code Sample</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Arithmetic-operation"><span class="nav-number">1.2.1.</span> <span class="nav-text">Arithmetic operation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Looping-and-indexing"><span class="nav-number">1.2.2.</span> <span class="nav-text">Looping and indexing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Input-and-output"><span class="nav-number">1.2.3.</span> <span class="nav-text">Input and output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Subroutine-call"><span class="nav-number">1.2.4.</span> <span class="nav-text">Subroutine call</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Extension-version-SIC-EX-EX%E7%89%88%E6%9C%AC"><span class="nav-number">1.3.</span> <span class="nav-text">Extension version (SIC&#x2F;EX) EX版本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Memory-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">Memory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Register-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">Register</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-format-1"><span class="nav-number">1.3.3.</span> <span class="nav-text">Data format</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -323,20 +442,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分類</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
