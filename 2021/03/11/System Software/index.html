@@ -34,8 +34,16 @@
 <meta property="og:image" content="https://andy-suisei.github.io/images/insformat.png">
 <meta property="og:image" content="https://andy-suisei.github.io/images/xeregister.png">
 <meta property="og:image" content="https://andy-suisei.github.io/images/xedata.png">
+<meta property="og:image" content="https://andy-suisei.github.io/images/base.png">
+<meta property="og:image" content="https://andy-suisei.github.io/images/pc.png">
+<meta property="og:image" content="https://andy-suisei.github.io/images/direct.png">
+<meta property="og:image" content="https://andy-suisei.github.io/images/indirect.png">
+<meta property="og:image" content="https://andy-suisei.github.io/images/immediate.png">
+<meta property="og:image" content="https://andy-suisei.github.io/images/index">
+<meta property="og:image" content="https://andy-suisei.github.io/images/simple.png">
+<meta property="og:image" content="https://andy-suisei.github.io/images/1-1sample.png">
 <meta property="article:published_time" content="2021-03-10T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-03-17T15:58:24.434Z">
+<meta property="article:modified_time" content="2021-03-20T11:13:01.119Z">
 <meta property="article:author" content="白魚">
 <meta property="article:tag" content="System Software">
 <meta name="twitter:card" content="summary">
@@ -205,7 +213,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-03-17 23:58:24" itemprop="dateModified" datetime="2021-03-17T23:58:24+08:00">2021-03-17</time>
+                <time title="修改時間：2021-03-20 19:13:01" itemprop="dateModified" datetime="2021-03-20T19:13:01+08:00">2021-03-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -347,15 +355,73 @@
 <h4 id="Register-1"><a href="#Register-1" class="headerlink" title="Register"></a>Register</h4><p><img src="/images/xeregister.png"></p>
 <h4 id="Instruction-format"><a href="#Instruction-format" class="headerlink" title="Instruction format"></a>Instruction format</h4><p><img src="/images/xedata.png"></p>
 <h4 id="Addressing-modes"><a href="#Addressing-modes" class="headerlink" title="Addressing modes"></a>Addressing modes</h4><ul>
-<li>Base relative 相對於基底(n = 1, i = 1, b = 1, p = 0)</li>
-<li>Program-counter relative 相對於PC暫存器(n = 1, i = 1, b = 0, p = 1)</li>
-<li>Direct(n = 1, i = 1, b = 0, p = 0)</li>
-<li>Indirect(n = 1, i = 0, x = 0)</li>
-<li>Immediate(n = 0, i = 1, x = 0)</li>
-<li>Indexing(n = i, x = 1)</li>
-<li>Extended(e = 1)</li>
+<li><font color=#ff0000>格式3</font>  Base relative 相對於基底(n = 1, i = 1, b = 1, p = 0)<ul>
+<li>TA = (B) + disp    (0 &lt; disp &lt; 4095)</li>
+<li><img src="/images/base.png"></li>
 </ul>
-
+</li>
+<li><font color=#ff0000>格式3 </font> Program-counter relative 相對於PC暫存器(n = 1, i = 1, b = 0, p = 1)<ul>
+<li>TA = (PC) + disp    (-2048 &lt; disp &lt; 2047) </li>
+<li><img src="/images/pc.png"></li>
+</ul>
+</li>
+<li><font color=#ff0000>格式3</font>  Direct(n = 1, i = 1, b = 0, p = 0)<ul>
+<li>TA =  disp    (0 &lt; disp &lt; 4095)</li>
+<li><img src="/images/direct.png"></li>
+</ul>
+</li>
+<li><font color=#ff0000>格式3</font>  Indirect(n = 1, i = 0, x = 0)<ul>
+<li>TA = (disp)    去disp位址取真正要跳的位址</li>
+<li><img src="/images/indirect.png"></li>
+</ul>
+</li>
+<li><font color=#ff0000>格式3</font>  Immediate(n = 0, i = 1, x = 0)<ul>
+<li>operand = disp</li>
+<li><img src="/images/immediate.png"></li>
+</ul>
+</li>
+<li><font color=#ff0000>格式3</font>  Indexing(n = i, x = 1)<ul>
+<li>TA = (X) + Original TA</li>
+<li><img src="/images/index"></li>
+</ul>
+</li>
+<li><font color=#ff0000>格式4</font>  Extended(e = 1)</li>
+<li><font color=#ff0000>格式3</font>  Simple<ul>
+<li>n = i = 0 時 = SIC版本</li>
+<li>n = i = 1 時 = XE版本</li>
+<li><img src="/images/simple.png"></li>
+</ul>
+</li>
+</ul>
+<h4 id="Instruction-set-1"><a href="#Instruction-set-1" class="headerlink" title="Instruction set"></a>Instruction set</h4><ul>
+<li>New Load and Store 載入和儲存暫存器<ul>
+<li>LDB, STB…</li>
+</ul>
+</li>
+<li>Floating-point arithmetic 浮點數算數運算指令<ul>
+<li>ADDF, SUBF, MULF, DIVF</li>
+</ul>
+</li>
+<li><font color=#ff0000>格式2 </font>Register move 暫存器移動<ul>
+<li>RMO</li>
+</ul>
+</li>
+<li><font color=#ff0000>格式2 </font>Register-Register  arithmetic 暫存器對暫存器計算<ul>
+<li>ADDR, SUBR, MULR, DIVR</li>
+</ul>
+</li>
+<li>Supervisor call 系統呼叫指令<ul>
+<li>SVC</li>
+</ul>
+</li>
+</ul>
+<h3 id="Sample"><a href="#Sample" class="headerlink" title="Sample"></a>Sample</h3><p>求目的位址以及載入暫存器的值</p>
+<p><img src="/images/1-1sample.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-Hex-	  -op-	 -nixbpe-	-disp-</span><br><span class="line">032600	 000000	 1 1 0 0 1 0	0110 0000 0000	&#x2F;&#x2F;Program-counter relative</span><br><span class="line">03C300	 000000	 1 1 1 1 0 0	0011 0000 0000	&#x2F;&#x2F;Base relative </span><br><span class="line">022030	 000000	 1 0 0 0 1 0	0000 0011 0000	&#x2F;&#x2F;Indirect</span><br><span class="line">010030	 000000	 0 1 0 0 0 0	0000 0011 0000	&#x2F;&#x2F;Immediate</span><br><span class="line">003600	 000000	 0 0 0 0 1 1	0110 0000 0000</span><br><span class="line">0310C303 000000	 1 1 0 0 0 1	0000 1100 0011 0000 0011</span><br></pre></td></tr></table></figure>
+<p>SIC版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">	LDA	FIVE	&#x2F;&#x2F;將FIVE位址的值存入A暫存器</span><br><span class="line">	STA	ALPHA	&#x2F;&#x2F;將A暫存器的值存入ALPHA位址</span><br><span class="line">	LDCH	CHARZ	&#x2F;&#x2F;從CHARZ位址讀一個字元進暫存器A</span><br><span class="line">	STCH	C1	&#x2F;&#x2F;把暫存器A的字元存入C1位址</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">ALPHA	RESW	3	&#x2F;&#x2F;ALPHA的位址保留3個word大小</span><br><span class="line">FIVE	WORD	5	&#x2F;&#x2F;FIVE的位址放入5</span><br><span class="line">CHARZ	BYTE	C&#39;Z&#39;	&#x2F;&#x2F;CHARZ的位址放入Z</span><br><span class="line">C1	RESB	1	&#x2F;&#x2F;c1的位址保留1個BYTE大小</span><br></pre></td></tr></table></figure>
+<p>XE版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">	LDA	#5	&#x2F;&#x2F;#為立即值(Immediate) 將5存入A暫存器</span><br><span class="line">	STA	ALPHA	&#x2F;&#x2F;將A暫存器的值存入ALPHA位址</span><br><span class="line">	LDCH	#90	&#x2F;&#x2F;將ASCII&#x3D;90的字元存進暫存器A</span><br><span class="line">	STCH	C1	&#x2F;&#x2F;把暫存器A的字元存入C1位址</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">	.</span><br><span class="line">ALPHA	RESW	3	&#x2F;&#x2F;ALPHA的位址保留3個word大小</span><br><span class="line">C1	RESB	1	&#x2F;&#x2F;c1的位址保留1個BYTE大小</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -435,7 +501,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Simplified-Instruction-Computer-%E7%B0%A1%E5%8C%96%E6%8C%87%E4%BB%A4%E9%9B%BB%E8%85%A6-SIC"><span class="nav-number">1.</span> <span class="nav-text">Simplified Instruction Computer 簡化指令電腦(SIC)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Standard-model-SIC-%E6%A8%99%E6%BA%96%E7%89%88%E6%9C%AC"><span class="nav-number">1.1.</span> <span class="nav-text">Standard model (SIC) 標準版本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Two-versions-of-SIC"><span class="nav-number">1.1.1.</span> <span class="nav-text">Two versions of SIC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Memory"><span class="nav-number">1.1.2.</span> <span class="nav-text">Memory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Register"><span class="nav-number">1.1.3.</span> <span class="nav-text">Register</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-format"><span class="nav-number">1.1.4.</span> <span class="nav-text">Data format</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Instruction-formats"><span class="nav-number">1.1.5.</span> <span class="nav-text">Instruction formats</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Instruction-set"><span class="nav-number">1.1.6.</span> <span class="nav-text">Instruction set</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Input-and-Output"><span class="nav-number">1.1.7.</span> <span class="nav-text">Input and Output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Directive"><span class="nav-number">1.1.8.</span> <span class="nav-text">Directive</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-Sample"><span class="nav-number">1.2.</span> <span class="nav-text">Code Sample</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Arithmetic-operation"><span class="nav-number">1.2.1.</span> <span class="nav-text">Arithmetic operation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Looping-and-indexing"><span class="nav-number">1.2.2.</span> <span class="nav-text">Looping and indexing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Input-and-output"><span class="nav-number">1.2.3.</span> <span class="nav-text">Input and output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Subroutine-call"><span class="nav-number">1.2.4.</span> <span class="nav-text">Subroutine call</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Extension-version-SIC-EX-EX%E7%89%88%E6%9C%AC"><span class="nav-number">1.3.</span> <span class="nav-text">Extension version (SIC&#x2F;EX) EX版本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Memory-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">Memory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Register-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">Register</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Instruction-format"><span class="nav-number">1.3.3.</span> <span class="nav-text">Instruction format</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Addressing-modes"><span class="nav-number">1.3.4.</span> <span class="nav-text">Addressing modes</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Simplified-Instruction-Computer-%E7%B0%A1%E5%8C%96%E6%8C%87%E4%BB%A4%E9%9B%BB%E8%85%A6-SIC"><span class="nav-number">1.</span> <span class="nav-text">Simplified Instruction Computer 簡化指令電腦(SIC)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Standard-model-SIC-%E6%A8%99%E6%BA%96%E7%89%88%E6%9C%AC"><span class="nav-number">1.1.</span> <span class="nav-text">Standard model (SIC) 標準版本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Two-versions-of-SIC"><span class="nav-number">1.1.1.</span> <span class="nav-text">Two versions of SIC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Memory"><span class="nav-number">1.1.2.</span> <span class="nav-text">Memory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Register"><span class="nav-number">1.1.3.</span> <span class="nav-text">Register</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-format"><span class="nav-number">1.1.4.</span> <span class="nav-text">Data format</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Instruction-formats"><span class="nav-number">1.1.5.</span> <span class="nav-text">Instruction formats</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Instruction-set"><span class="nav-number">1.1.6.</span> <span class="nav-text">Instruction set</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Input-and-Output"><span class="nav-number">1.1.7.</span> <span class="nav-text">Input and Output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Directive"><span class="nav-number">1.1.8.</span> <span class="nav-text">Directive</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-Sample"><span class="nav-number">1.2.</span> <span class="nav-text">Code Sample</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Arithmetic-operation"><span class="nav-number">1.2.1.</span> <span class="nav-text">Arithmetic operation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Looping-and-indexing"><span class="nav-number">1.2.2.</span> <span class="nav-text">Looping and indexing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Input-and-output"><span class="nav-number">1.2.3.</span> <span class="nav-text">Input and output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Subroutine-call"><span class="nav-number">1.2.4.</span> <span class="nav-text">Subroutine call</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Extension-version-SIC-EX-EX%E7%89%88%E6%9C%AC"><span class="nav-number">1.3.</span> <span class="nav-text">Extension version (SIC&#x2F;EX) EX版本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Memory-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">Memory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Register-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">Register</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Instruction-format"><span class="nav-number">1.3.3.</span> <span class="nav-text">Instruction format</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Addressing-modes"><span class="nav-number">1.3.4.</span> <span class="nav-text">Addressing modes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Instruction-set-1"><span class="nav-number">1.3.5.</span> <span class="nav-text">Instruction set</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample"><span class="nav-number">1.4.</span> <span class="nav-text">Sample</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
