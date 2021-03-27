@@ -85,14 +85,13 @@ function loadWidget(config) {
 			else if (now > 13 && now <= 17) text = "午後很容易犯困呢，今天的運動目標完成了嗎？";
 			else if (now > 17 && now <= 19) text = "傍晚了！窗外夕陽的景色很美麗呢，最美不過夕陽紅～";
 			else if (now > 19 && now <= 21) text = "晚上好，今天過得怎麼樣？";
-			else if (now > 21 && now <= 23) text = ["已經這麼晚了呀，早點休息吧，晚安～", "深夜時要愛護眼睛呀！"];
+			else if (now > 21 && now <= 23) text = "已經這麼晚了呀，早點休息吧，晚安～", "深夜時要愛護眼睛呀！";
 			else text = "你是夜貓子呀？這麼晚還不睡覺，明天起的來嘛？";
 		} else if (document.referrer !== "") {
 			const referrer = new URL(document.referrer),
 				domain = referrer.hostname.split(".")[1];
 			if (location.hostname === referrer.hostname) text = `歡迎閲讀<span>「${document.title.split(" - ")[0]}」</span>`;
 			else if (domain === "baidu") text = `Hello！來自 百度搜索 的朋友<br>你是搜索 <span>${referrer.search.split("&wd=")[1].split("&")[0]}</span> 找到的我嗎？`;
-			else if (domain === "so") text = `Hello！來自 360搜索 的朋友<br>你是搜索 <span>${referrer.search.split("&q=")[1].split("&")[0]}</span> 找到的我嗎？`;
 			else if (domain === "google") text = `Hello！來自 谷歌搜索 的朋友<br>歡迎閲讀<span>「${document.title.split(" - ")[0]}」</span>`;
 			else text = `Hello！來自 <span>${referrer.hostname}</span> 的朋友`;
 		} else {
@@ -155,7 +154,7 @@ function loadWidget(config) {
 					if ((after.split("/")[0] <= now.getMonth() + 1 && now.getMonth() + 1 <= before.split("/")[0]) && (after.split("/")[1] <= now.getDate() && now.getDate() <= before.split("/")[1])) {
 						text = randomSelection(text);
 						text = text.replace("{year}", now.getFullYear());
-						//showMessage(text, 7000, true);
+						showMessage(text, 7000, 8);
 						messageArray.push(text);
 					}
 				});
