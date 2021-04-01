@@ -232,9 +232,9 @@
 <li>如果你是通过 Hexo 等工具部署的静态博客，请在博客源文件（即 <code>source</code>）目录下，执行前述的 <code>git clone</code> 命令。重新部署博客时，相关文件就会自动上传到对应的路径下。为了避免这些文件被 Hexo 插件错误地修改，可能需要设置 <code>skip_render</code>。</li>
 </ul>
 <p>这样，整个项目就可以通过你的服务器 IP 或者域名从公网访问了。不妨试试能否正常地通过浏览器打开 <code>autoload.js</code> 和 <code>live2d.min.js</code> 等文件，并确认这些文件的内容是完整和正确的。<br>一切正常的话，接下来修改一些配置就行了。（需要通过服务器上的文本编辑器修改；你也可以先在本地完成这一步骤，再上传到服务器上）<br>修改 <code>autoload.js</code> 中的常量 <code>live2d_path</code> 为 <code>live2d-widget</code> 这一目录的 URL。比如说，如果你能够通过</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;example.com&#x2F;path&#x2F;to&#x2F;live2d-widget&#x2F;live2d.min.js</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//</span>example.com<span class="regexp">/path/</span>to<span class="regexp">/live2d-widget/</span>live2d.min.js</span><br></pre></td></tr></table></figure>
 <p>访问到 <code>live2d.min.js</code>，那么就把 <code>live2d_path</code> 的值修改为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;example.com&#x2F;path&#x2F;to&#x2F;live2d-widget&#x2F;</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//</span>example.com<span class="regexp">/path/</span>to<span class="regexp">/live2d-widget/</span></span><br></pre></td></tr></table></figure>
 <p>路径末尾的 <code>/</code> 一定要加上。具体可以参考 <code>autoload.js</code> 内的注释。<br>完成后，在你要添加看板娘的界面加入</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://example.com/path/to/live2d-widget/autoload.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>就可以加载了。</p>
