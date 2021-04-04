@@ -44,8 +44,10 @@
 <meta property="og:image" content="https://andy-suisei.github.io/images/1-1sample.png">
 <meta property="og:image" content="https://andy-suisei.github.io/images/assembler.png">
 <meta property="og:image" content="https://andy-suisei.github.io/images/two-pass.png">
+<meta property="og:image" content="https://andy-suisei.github.io/images/xecode.png">
+<meta property="og:image" content="https://andy-suisei.github.io/images/xecode2.png">
 <meta property="article:published_time" content="2021-03-10T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-04-01T06:46:25.632Z">
+<meta property="article:modified_time" content="2021-04-04T16:33:46.899Z">
 <meta property="article:author" content="白魚">
 <meta property="article:tag" content="System Software">
 <meta name="twitter:card" content="summary">
@@ -216,7 +218,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-04-01 14:46:25" itemprop="dateModified" datetime="2021-04-01T14:46:25+08:00">2021-04-01</time>
+                <time title="修改時間：2021-04-05 00:33:46" itemprop="dateModified" datetime="2021-04-05T00:33:46+08:00">2021-04-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -438,13 +440,14 @@
 <h4 id="Address-translation-problem"><a href="#Address-translation-problem" class="headerlink" title="Address translation problem"></a>Address translation problem</h4><ul>
 <li>Foward reference 前向參考問題： 程式涉及一個尚未定義的標記符號</li>
 </ul>
-<h4 id="解決方法-Two-pass-assembler："><a href="#解決方法-Two-pass-assembler：" class="headerlink" title="解決方法-Two pass assembler："></a>解決方法-Two pass assembler：</h4><ol>
+<h4 id="Two-pass-assembler"><a href="#Two-pass-assembler" class="headerlink" title="Two pass assembler"></a>Two pass assembler</h4><ol>
 <li>先走訪並記錄程式裡面每一行指令的記憶體位址</li>
 <li>組譯指令產生目的碼</li>
 </ol>
 <p><img src="/images/two-pass.png"></p>
 <ul>
-<li>運算碼表 (Operation Code Table; OPTAB)<ul>
+<li><p>運算碼表 (Operation Code Table; OPTAB)</p>
+<ul>
 <li>儲存助憶指令與機器碼之關連</li>
 <li>使用Hash Table，使用助憶碼作為key</li>
 <li>第一回合用來檢驗運算碼及計算指令長度</li>
@@ -452,30 +455,44 @@
 <li>Static結構</li>
 </ul>
 </li>
-<li>符號表 (Symbol Table; SYMTAB)<ul>
+<li><p>符號表 (Symbol Table; SYMTAB)</p>
+<ul>
 <li>儲存Labels的代表位址</li>
 <li>包含Labels名稱、位址、長度、型態和error flags</li>
 <li>使用Hash Table加速</li>
 <li>Dynamic結構</li>
 </ul>
 </li>
-<li>程式計數器 (Location Counter ; LOCCTR)<ul>
+<li><p>程式計數器 (Location Counter ; LOCCTR)</p>
+<ul>
 <li>初始值為START指派的值</li>
 <li>記錄下一個指令的位址</li>
 </ul>
 </li>
+<li><p>Intermediate file</p>
+<ul>
+<li>由pass1寫入並當pass2的input</li>
+<li>包含：<ul>
+<li>在pass1所得到的記憶體位址</li>
 </ul>
-<hr>
-<p><strong>pass1</strong></p>
+</li>
+</ul>
+</li>
+<li><p><strong>pass1</strong></p>
 <p>主要找出label與addr對應的位置建立SYMTABLE</p>
+</li>
+</ul>
 <ol>
 <li>判斷指令長度(透過OPTAB)</li>
 <li>計算LOCCTR</li>
 <li>將lable的地址保存到SYMTABLE</li>
 <li>處理pseudo instruction</li>
 </ol>
-<p><strong>pass2</strong></p>
+<ul>
+<li><p><strong>pass2</strong></p>
 <p>產生obj</p>
+</li>
+</ul>
 <ol>
 <li>透過SYMTAB帶入pass1沒有處理的symbol</li>
 <li>透過OPTABLE產生機器碼</li>
@@ -483,9 +500,39 @@
 <li>產生pseudo定義的數據如BYTE, WORD</li>
 <li>處理pass1未處理的pseudo</li>
 </ol>
-<hr>
+<h4 id="Addressing-mode"><a href="#Addressing-mode" class="headerlink" title="Addressing mode"></a>Addressing mode</h4><ul>
+<li>間接定址(@)、立即定址(#)、索引定址(,x)都必須指定</li>
+<li>若沒有使用extended(+)<ul>
+<li>先試著使用PC定址</li>
+<li>若超出範圍則試著使用Base定址</li>
+<li>若兩者都不適用則會生成錯誤訊息</li>
+</ul>
+</li>
+</ul>
 <h3 id="Code-sample-1"><a href="#Code-sample-1" class="headerlink" title="Code sample"></a>Code sample</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">COPY	START	1000	&#x2F;&#x2F;程式進入點 開始位置&#x3D;1000</span><br><span class="line">FIRST	STL	RETADR	&#x2F;&#x2F;儲存Return address進L暫存器</span><br><span class="line">CLOOP	JSUB	RDREC	&#x2F;&#x2F;進入RDREC副程式</span><br><span class="line">	LDA	LENGTH	&#x2F;&#x2F;將LENGTG讀入暫存器A</span><br><span class="line">	COMP	ZERO	&#x2F;&#x2F;測試EOF(LENGTH 是否&#x3D; 0)</span><br><span class="line">	JEQ	ENDFIL	&#x2F;&#x2F;jump如果EOF</span><br><span class="line">	JSUB	WRREC	&#x2F;&#x2F;進入WRREC副程式</span><br><span class="line">	J	CLOOP	&#x2F;&#x2F;迴圈</span><br><span class="line">ENDFIL	LDA	EOF	</span><br><span class="line">	STA	BUFFER</span><br><span class="line">	LDA	THREE</span><br><span class="line">	STA	LENGTH</span><br><span class="line">	JSUB	WRREC</span><br><span class="line">	LDL	RETADR</span><br><span class="line">	RSUB	&#x2F;&#x2F;返回主程式</span><br><span class="line">EOF	BYTE	C&#39;EOF&#39;	</span><br><span class="line">THREE	WORD	3</span><br><span class="line">ZERO	WORD	0</span><br><span class="line">RETADR	RESW	1</span><br><span class="line">LENGTH	RESW	1</span><br><span class="line">BUFFER	RESB	4096</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">RDREC	LDX	ZERO	&#x2F;&#x2F;初始化暫存器X &#x3D; 0</span><br><span class="line">	LDA	ZERO	&#x2F;&#x2F;初始化暫存器A &#x3D; 0</span><br><span class="line">RLOOP	TD	INPUT	&#x2F;&#x2F;測試輸入裝置</span><br><span class="line">	JEQ	RLOOP	&#x2F;&#x2F;迴圈直到輸入裝置準備好</span><br><span class="line">	RD	INPUT	&#x2F;&#x2F;讀入一個字元進入暫存器A</span><br><span class="line">	COMP	ZERO	&#x2F;&#x2F;跟0比較</span><br><span class="line">	JEQ	EXIT	&#x2F;&#x2F;如果EOF跳出迴圈</span><br><span class="line">	STCH	BUFFER,X	&#x2F;&#x2F;把暫存器A的字元存入BUFFER位址</span><br><span class="line">	TIX	MAXLEN	&#x2F;&#x2F;先將X暫存器值+1後跟MAXLEN比對 值放入CC</span><br><span class="line">	JLT	RLOOP	&#x2F;&#x2F;如果CC是小於則跳回RLOOP</span><br><span class="line">EXIT	STX	LENGTH	&#x2F;&#x2F;儲存長度</span><br><span class="line">	RSUB	&#x2F;&#x2F;返回主程式</span><br><span class="line">INPUT	BYTE	X&#39;F1&#39;</span><br><span class="line">MAXLEN WORD	4096</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">WRREC	LDX	ZERO</span><br><span class="line">WLOOP	TD	OUTPUT</span><br><span class="line">	JEQ	WLOOP</span><br><span class="line">	LDCH	BUFFER,X</span><br><span class="line">	WD	OUTPUT</span><br><span class="line">	TIX	LENGTH</span><br><span class="line">	JLT	WLOOP</span><br><span class="line">	RSUB</span><br><span class="line">OUTPUT	BYTE	X&#39;05&#39;</span><br><span class="line">	END	FIRST</span><br></pre></td></tr></table></figure>
 
+<p>XE版本</p>
+<p><img src="/images/xecode.png"></p>
+<p><img src="/images/xecode2.png"></p>
+<hr>
+<p>15行 +JSUB –&gt; extended從格式三增加到格式四 多一個BYTE</p>
+<p>4B101036 -&gt; 010010 <font color="red">1 1 0 0 0 1</font> <font color="blue">0000 0001 0000 0011 0110</font></p>
+<hr>
+<p>70行 @RETADR –&gt; 指定為間接定址</p>
+<p>3E2003 -&gt; 001111 <font color="red">1 0 0 0 1 0</font> <font color="blue">0000 0000 0011</font></p>
+<hr>
+<p>12,13行</p>
+<p>BASE是directive，代表BASE暫存器內容可以使用</p>
+<p>160行</p>
+<p>disp = BUFFER - PC = 0036 - 1051 = -101B &gt; PC定址範圍 -&gt; 嘗試使用Base定址</p>
+<hr>
+<p>20行, 60行 都是LENGTH但是因為是將OP Code拆出來看的話              </p>
+<p>032026 -&gt; 000000 <font color="red">1 1 0 0 1 0</font> <font color="blue">0000 0010 0110</font></p>
+<p>0F200D -&gt; 000011 <font color="red">1 1 0 0 1 0</font> <font color="blue">0000 0000 1101</font></p>
+<p>他們的定址模式一樣都是PC相對定址 = PC + disp</p>
+<p>LEGTH在0033位址 在20行時PC在000D，60行時PC在0026</p>
+<p>所以20行disp = 0033 - 000D = 0026，60行disp = 0033 - 0026 = 000D</p>
+<hr>
 
     </div>
 
@@ -569,7 +616,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Simplified-Instruction-Computer-%E7%B0%A1%E5%8C%96%E6%8C%87%E4%BB%A4%E9%9B%BB%E8%85%A6-SIC"><span class="nav-number">1.</span> <span class="nav-text">Simplified Instruction Computer 簡化指令電腦(SIC)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Standard-model-SIC-%E6%A8%99%E6%BA%96%E7%89%88%E6%9C%AC"><span class="nav-number">1.1.</span> <span class="nav-text">Standard model (SIC) 標準版本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Two-versions-of-SIC"><span class="nav-number">1.1.1.</span> <span class="nav-text">Two versions of SIC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Memory"><span class="nav-number">1.1.2.</span> <span class="nav-text">Memory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Register"><span class="nav-number">1.1.3.</span> <span class="nav-text">Register</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-format"><span class="nav-number">1.1.4.</span> <span class="nav-text">Data format</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Instruction-formats"><span class="nav-number">1.1.5.</span> <span class="nav-text">Instruction formats</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Instruction-set"><span class="nav-number">1.1.6.</span> <span class="nav-text">Instruction set</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Input-and-Output"><span class="nav-number">1.1.7.</span> <span class="nav-text">Input and Output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Directive"><span class="nav-number">1.1.8.</span> <span class="nav-text">Directive</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Extension-version-SIC-EX-EX%E7%89%88%E6%9C%AC"><span class="nav-number">1.2.</span> <span class="nav-text">Extension version (SIC&#x2F;EX) EX版本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Memory-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">Memory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Register-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">Register</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Instruction-format"><span class="nav-number">1.2.3.</span> <span class="nav-text">Instruction format</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Addressing-modes"><span class="nav-number">1.2.4.</span> <span class="nav-text">Addressing modes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Instruction-set-1"><span class="nav-number">1.2.5.</span> <span class="nav-text">Instruction set</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-sample"><span class="nav-number">1.3.</span> <span class="nav-text">Code sample</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Load-and-Store"><span class="nav-number">1.3.1.</span> <span class="nav-text">Load and Store</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Arithmetic-operation"><span class="nav-number">1.3.2.</span> <span class="nav-text">Arithmetic operation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Looping-and-indexing"><span class="nav-number">1.3.3.</span> <span class="nav-text">Looping and indexing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Input-and-output"><span class="nav-number">1.3.4.</span> <span class="nav-text">Input and output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Subroutine-call"><span class="nav-number">1.3.5.</span> <span class="nav-text">Subroutine call</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assembler%E7%B5%84%E8%AD%AF%E5%99%A8"><span class="nav-number">2.</span> <span class="nav-text">Assembler組譯器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Role-of-Assembler"><span class="nav-number">2.1.</span> <span class="nav-text">Role of Assembler</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Basic-SIC-assembler-directive"><span class="nav-number">2.1.1.</span> <span class="nav-text">Basic SIC assembler directive</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Fundamental-functions-of-assembler"><span class="nav-number">2.1.2.</span> <span class="nav-text">Fundamental functions of assembler</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Address-translation-problem"><span class="nav-number">2.1.3.</span> <span class="nav-text">Address translation problem</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95-Two-pass-assembler%EF%BC%9A"><span class="nav-number">2.1.4.</span> <span class="nav-text">解決方法-Two pass assembler：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-sample-1"><span class="nav-number">2.2.</span> <span class="nav-text">Code sample</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Simplified-Instruction-Computer-%E7%B0%A1%E5%8C%96%E6%8C%87%E4%BB%A4%E9%9B%BB%E8%85%A6-SIC"><span class="nav-number">1.</span> <span class="nav-text">Simplified Instruction Computer 簡化指令電腦(SIC)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Standard-model-SIC-%E6%A8%99%E6%BA%96%E7%89%88%E6%9C%AC"><span class="nav-number">1.1.</span> <span class="nav-text">Standard model (SIC) 標準版本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Two-versions-of-SIC"><span class="nav-number">1.1.1.</span> <span class="nav-text">Two versions of SIC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Memory"><span class="nav-number">1.1.2.</span> <span class="nav-text">Memory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Register"><span class="nav-number">1.1.3.</span> <span class="nav-text">Register</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-format"><span class="nav-number">1.1.4.</span> <span class="nav-text">Data format</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Instruction-formats"><span class="nav-number">1.1.5.</span> <span class="nav-text">Instruction formats</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Instruction-set"><span class="nav-number">1.1.6.</span> <span class="nav-text">Instruction set</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Input-and-Output"><span class="nav-number">1.1.7.</span> <span class="nav-text">Input and Output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Directive"><span class="nav-number">1.1.8.</span> <span class="nav-text">Directive</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Extension-version-SIC-EX-EX%E7%89%88%E6%9C%AC"><span class="nav-number">1.2.</span> <span class="nav-text">Extension version (SIC&#x2F;EX) EX版本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Memory-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">Memory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Register-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">Register</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Instruction-format"><span class="nav-number">1.2.3.</span> <span class="nav-text">Instruction format</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Addressing-modes"><span class="nav-number">1.2.4.</span> <span class="nav-text">Addressing modes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Instruction-set-1"><span class="nav-number">1.2.5.</span> <span class="nav-text">Instruction set</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-sample"><span class="nav-number">1.3.</span> <span class="nav-text">Code sample</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Load-and-Store"><span class="nav-number">1.3.1.</span> <span class="nav-text">Load and Store</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Arithmetic-operation"><span class="nav-number">1.3.2.</span> <span class="nav-text">Arithmetic operation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Looping-and-indexing"><span class="nav-number">1.3.3.</span> <span class="nav-text">Looping and indexing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Input-and-output"><span class="nav-number">1.3.4.</span> <span class="nav-text">Input and output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Subroutine-call"><span class="nav-number">1.3.5.</span> <span class="nav-text">Subroutine call</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assembler%E7%B5%84%E8%AD%AF%E5%99%A8"><span class="nav-number">2.</span> <span class="nav-text">Assembler組譯器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Role-of-Assembler"><span class="nav-number">2.1.</span> <span class="nav-text">Role of Assembler</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Basic-SIC-assembler-directive"><span class="nav-number">2.1.1.</span> <span class="nav-text">Basic SIC assembler directive</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Fundamental-functions-of-assembler"><span class="nav-number">2.1.2.</span> <span class="nav-text">Fundamental functions of assembler</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Address-translation-problem"><span class="nav-number">2.1.3.</span> <span class="nav-text">Address translation problem</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Two-pass-assembler"><span class="nav-number">2.1.4.</span> <span class="nav-text">Two pass assembler</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Addressing-mode"><span class="nav-number">2.1.5.</span> <span class="nav-text">Addressing mode</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-sample-1"><span class="nav-number">2.2.</span> <span class="nav-text">Code sample</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
