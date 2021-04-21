@@ -57,7 +57,7 @@
 <meta property="og:image" content="https://andy-suisei.github.io/images/xecode2.png">
 <meta property="og:image" content="https://andy-suisei.github.io/images/finalcode.png">
 <meta property="article:published_time" content="2021-03-10T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-04-21T14:19:11.153Z">
+<meta property="article:modified_time" content="2021-04-21T14:21:57.694Z">
 <meta property="article:author" content="白魚">
 <meta property="article:tag" content="System Software">
 <meta name="twitter:card" content="summary">
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-04-21 22:19:11" itemprop="dateModified" datetime="2021-04-21T22:19:11+08:00">2021-04-21</time>
+                <time title="修改時間：2021-04-21 22:21:57" itemprop="dateModified" datetime="2021-04-21T22:21:57+08:00">2021-04-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -536,21 +536,12 @@
 <li>控制區段與程式連結 Control Sections and Program Linking</li>
 </ul>
 <h4 id="Literal"><a href="#Literal" class="headerlink" title="Literal"></a>Literal</h4><ul>
-<li><p>直接將常數運算元的值當成指令的一部份</p>
-</li>
-<li><p>避免在程式的其他區段定義這常數，並給予常數一個標記</p>
-</li>
-<li><p>使用 “=”來做判定</p>
-</li>
-<li><p>LTORG為希望literal被放置在目的程式的位置</p>
-</li>
-<li><p>範例：</p>
-<ul>
-<li><p>45行的LDA 組譯器會將他轉成</p>
-<p>LDA EOF</p>
-<p>EOF BYTE C’EOF’    &lt;–這句塞在下一個LTORG指示的位址，若到程式結束前還沒有LTORG則寫在程式最後</p>
-<p>這兩行，所以機器碼其實跟沒有使用定字的機器碼一樣</p>
-</li>
+<li>直接將常數運算元的值當成指令的一部份</li>
+<li>避免在程式的其他區段定義這常數，並給予常數一個標記</li>
+<li>使用 “=”來做判定</li>
+<li>LTORG為希望literal被放置在目的程式的位置</li>
+<li>範例：<ul>
+<li>45行的LDA 組譯器會將他轉成<br>LDA EOF<br>EOF BYTE C’EOF’    &lt;–這句塞在下一個LTORG指示的位址，若到程式結束前還沒有LTORG則寫在程式最後這兩行，所以機器碼其實跟沒有使用定字的機器碼一樣</li>
 </ul>
 </li>
 </ul>
