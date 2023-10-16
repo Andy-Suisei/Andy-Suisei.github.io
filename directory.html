@@ -5,7 +5,8 @@
 </head>
 <body>
     <h1>選擇年級</h1>
-    
+    <label><input type="checkbox" id="教授"> 教授</label>
+	<label><input type="checkbox" id="助理"> 助理</label>
     <label><input type="checkbox" id="博班"> 博班</label>
 	<label><input type="checkbox" id="碩三"> 碩三</label>
     <label><input type="checkbox" id="碩二"> 碩二</label>
@@ -17,6 +18,12 @@
     
     <script>
         var 學生名單 = {
+			'教授': [
+				{ 名稱: '曾新穆', 電子郵件: 'tsengsm@gmail.com' }
+			],
+			'助理': [
+				{ 名稱: 'Cindy Ko', 電子郵件: 'cindyko@nycu.edu.tw' }
+			],
             '博班': [
                 { 名稱: '吳羽佳', 電子郵件: 'wuyujia44@gmail.com' },
                 { 名稱: '戴浩', 電子郵件: 'damon.iim05g@g2.nctu.edu.tw' },
@@ -57,7 +64,18 @@
 
         function 顯示選項() {
             var 選項 = [];
-
+			if (document.getElementById('教授').checked) {
+                var 教授 = 學生名單['教授'];
+                for (var i = 0; i < 教授.length; i++) {
+                    選項.push(教授[i].名稱 + ' &lt;' + 教授[i].電子郵件 + '&gt;');
+                }
+            }
+			if (document.getElementById('助理').checked) {
+                var 助理 = 學生名單['助理'];
+                for (var i = 0; i < 助理.length; i++) {
+                    選項.push(助理[i].名稱 + ' &lt;' + 助理[i].電子郵件 + '&gt;');
+                }
+            }
             if (document.getElementById('博班').checked) {
                 var 博班學生 = 學生名單['博班'];
                 for (var i = 0; i < 博班學生.length; i++) {
