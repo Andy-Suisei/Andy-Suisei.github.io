@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DI LAB寄信通訊錄</title>
+</head>
+<body>
+    <h1>選擇年級</h1>
+    
+    <label><input type="checkbox" id="博班"> 博班</label>
+	<label><input type="checkbox" id="碩三"> 碩三</label>
+    <label><input type="checkbox" id="碩二"> 碩二</label>
+    <label><input type="checkbox" id="碩一"> 碩一</label>
+    
+    <button onclick="顯示選項()">顯示選項</button>
+    
+    <div id="選擇結果"></div>
+    
+    <script>
+        var 學生名單 = {
+            '博班': [
+                { 名稱: '吳羽佳', 電子郵件: 'wuyujia44@gmail.com' },
+                { 名稱: '戴浩', 電子郵件: 'damon.iim05g@g2.nctu.edu.tw' },
+                { 名稱: '林惠婷', 電子郵件: 'lin.ting.christine@gmail.com' },
+                { 名稱: '許維勻', 電子郵件: 'bennyhsu.cs06@nycu.edu.tw' },
+                { 名稱: '陳敏楨', 電子郵件: 'natalie1116.cs11@nycu.edu.tw' },
+                { 名稱: 'Oscar Chen陳泰元', 電子郵件: 'oscarchen.cs10@nycu.edu.tw' }
+            ],
+			'碩三': [
+                { 名稱: '雍冠軒', 電子郵件: 's10553031.cs10@nycu.edu.tw' },
+                { 名稱: '劉亘樵', 電子郵件: 'kevin8721142@gmail.com' }
+            ],
+            '碩二': [
+                { 名稱: '吳佳穎', 電子郵件: 'jwu7778@gmail.com' },
+                { 名稱: '鄭乃心', 電子郵件: 'heidi88922.10@nycu.edu.tw' },
+                { 名稱: '董柏葳', 電子郵件: 'bwdong.cs11@nycu.edu.tw' },
+                { 名稱: '張亭萱', 電子郵件: 'tiffycshsf@gmail.com' },
+                { 名稱: '李奕慧', 電子郵件: 'polly1580@gmail.com' },
+                { 名稱: '李彥儒', 電子郵件: 'yanru.11@nycu.edu.tw' },
+                { 名稱: '蕭為文', 電子郵件: 'evanrk1003@gmail.com' },
+                { 名稱: '吳述蓉', 電子郵件: 'roeywu1008@gmail.com' },
+                { 名稱: '黃浵洋', 電子郵件: 'duncan19991220@gmail.com' },
+                { 名稱: '李元亨', 電子郵件: 'yuanhenglee2000@gmail.com' },
+                { 名稱: '黃郁雯', 電子郵件: 'yuwen.cs11@nycu.edu.tw' }
+            ],
+            '碩一': [
+                { 名稱: '劉柏顯', 電子郵件: 'pohsien0915@gmail.com' },
+                { 名稱: '張紀睿', 電子郵件: 'jerryyyyy708@gmail.com' },
+                { 名稱: '周于暄', 電子郵件: 'yhc.mg08@nycu.edu.tw' },
+                { 名稱: '薛致謙', 電子郵件: 'ccs102211@gmail.com' },
+                { 名稱: '胡珈華', 電子郵件: 'hujiahua900714@gmail.com' },
+                { 名稱: '姚博維', 電子郵件: 'andy3369968@gmail.com' },
+                { 名稱: '徐圓媛', 電子郵件: 'crystalhsu20001224@gmail.com' },
+                { 名稱: '彭淵', 電子郵件: 'williampeng1224@gmail.com' },
+                { 名稱: '柏辰', 電子郵件: 'fire871006@gmail.com' }
+            ]
+        };
+
+        function 顯示選項() {
+            var 選項 = [];
+
+            if (document.getElementById('博班').checked) {
+                var 博班學生 = 學生名單['博班'];
+                for (var i = 0; i < 博班學生.length; i++) {
+                    選項.push(博班學生[i].名稱 + ' &lt;' + 博班學生[i].電子郵件 + '&gt;');
+                }
+            }
+			if (document.getElementById('碩三').checked) {
+                var 碩三學生 = 學生名單['碩三'];
+                for (var i = 0; i < 碩三學生.length; i++) {
+                    選項.push(碩三學生[i].名稱 + ' &lt;' + 碩三學生[i].電子郵件 + '&gt;');
+                }
+            }
+            if (document.getElementById('碩二').checked) {
+                var 碩二學生 = 學生名單['碩二'];
+                for (var i = 0; i < 碩二學生.length; i++) {
+                    選項.push(碩二學生[i].名稱 + ' &lt;' + 碩二學生[i].電子郵件 + '&gt;');
+                }
+            }
+
+            if (document.getElementById('碩一').checked) {
+                var 碩一學生 = 學生名單['碩一'];
+                for (var i = 0; i < 碩一學生.length; i++) {
+                    選項.push(碩一學生[i].名稱 + ' &lt;' + 碩一學生[i].電子郵件 + '&gt;');
+                }
+            }
+
+            var 結果區域 = document.getElementById('選擇結果');
+            結果區域.innerHTML = 選項.join('、<br>') + '、';
+        }
+    </script>
+</body>
+</html>
